@@ -34,7 +34,8 @@ namespace Calendar.View
 
             reminders = new List<CreateReminder>();
 
-            //listViewReminder.Columns.Add("Thời gian nhắc trước");
+            listViewReminder.Columns.Add("Thời gian nhắc trước");
+            listViewReminder.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void btnAddReminder_Click(object sender, EventArgs e)
@@ -62,13 +63,13 @@ namespace Calendar.View
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (!ReminderBLL.createReminders(reminders)) return;
-            this.Dispose();
+            this.Close();
         }
     }
 }

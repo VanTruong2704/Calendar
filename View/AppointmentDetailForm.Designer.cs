@@ -111,7 +111,7 @@
             // labelReminder
             // 
             this.labelReminder.AutoSize = true;
-            this.labelReminder.Location = new System.Drawing.Point(431, 156);
+            this.labelReminder.Location = new System.Drawing.Point(431, 107);
             this.labelReminder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelReminder.Name = "labelReminder";
             this.labelReminder.Size = new System.Drawing.Size(98, 29);
@@ -121,10 +121,10 @@
             // listViewReminder
             // 
             this.listViewReminder.HideSelection = false;
-            this.listViewReminder.Location = new System.Drawing.Point(436, 188);
-            this.listViewReminder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewReminder.Location = new System.Drawing.Point(436, 142);
+            this.listViewReminder.Margin = new System.Windows.Forms.Padding(2);
             this.listViewReminder.Name = "listViewReminder";
-            this.listViewReminder.Size = new System.Drawing.Size(261, 96);
+            this.listViewReminder.Size = new System.Drawing.Size(294, 182);
             this.listViewReminder.TabIndex = 1;
             this.listViewReminder.UseCompatibleStateImageBehavior = false;
             this.listViewReminder.View = System.Windows.Forms.View.Details;
@@ -132,7 +132,7 @@
             // labelParticipants
             // 
             this.labelParticipants.AutoSize = true;
-            this.labelParticipants.Location = new System.Drawing.Point(55, 307);
+            this.labelParticipants.Location = new System.Drawing.Point(55, 308);
             this.labelParticipants.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelParticipants.Name = "labelParticipants";
             this.labelParticipants.Size = new System.Drawing.Size(266, 29);
@@ -142,20 +142,24 @@
             // dgvParticipants
             // 
             this.dgvParticipants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvParticipants.Location = new System.Drawing.Point(60, 338);
-            this.dgvParticipants.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvParticipants.Location = new System.Drawing.Point(68, 354);
+            this.dgvParticipants.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvParticipants.MultiSelect = false;
             this.dgvParticipants.Name = "dgvParticipants";
+            this.dgvParticipants.ReadOnly = true;
+            this.dgvParticipants.RowHeadersVisible = false;
             this.dgvParticipants.RowHeadersWidth = 72;
             this.dgvParticipants.RowTemplate.Height = 31;
+            this.dgvParticipants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvParticipants.Size = new System.Drawing.Size(653, 150);
             this.dgvParticipants.TabIndex = 2;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(322, 513);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(339, 513);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(116, 32);
+            this.btnExit.Size = new System.Drawing.Size(116, 43);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Đóng";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -167,9 +171,9 @@
             this.labelAppName.Location = new System.Drawing.Point(213, 72);
             this.labelAppName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppName.Name = "labelAppName";
-            this.labelAppName.Size = new System.Drawing.Size(74, 29);
+            this.labelAppName.Size = new System.Drawing.Size(113, 29);
             this.labelAppName.TabIndex = 0;
-            this.labelAppName.Text = "label1";
+            this.labelAppName.Text = "Đang tải...";
             // 
             // labelAppLocation
             // 
@@ -177,9 +181,9 @@
             this.labelAppLocation.Location = new System.Drawing.Point(213, 119);
             this.labelAppLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppLocation.Name = "labelAppLocation";
-            this.labelAppLocation.Size = new System.Drawing.Size(74, 29);
+            this.labelAppLocation.Size = new System.Drawing.Size(113, 29);
             this.labelAppLocation.TabIndex = 0;
-            this.labelAppLocation.Text = "label1";
+            this.labelAppLocation.Text = "Đang tải...";
             // 
             // labelAppDate
             // 
@@ -187,9 +191,9 @@
             this.labelAppDate.Location = new System.Drawing.Point(213, 163);
             this.labelAppDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppDate.Name = "labelAppDate";
-            this.labelAppDate.Size = new System.Drawing.Size(74, 29);
+            this.labelAppDate.Size = new System.Drawing.Size(113, 29);
             this.labelAppDate.TabIndex = 0;
-            this.labelAppDate.Text = "label1";
+            this.labelAppDate.Text = "Đang tải...";
             // 
             // labelAppEndhour
             // 
@@ -197,9 +201,9 @@
             this.labelAppEndhour.Location = new System.Drawing.Point(213, 254);
             this.labelAppEndhour.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppEndhour.Name = "labelAppEndhour";
-            this.labelAppEndhour.Size = new System.Drawing.Size(74, 29);
+            this.labelAppEndhour.Size = new System.Drawing.Size(113, 29);
             this.labelAppEndhour.TabIndex = 0;
-            this.labelAppEndhour.Text = "label1";
+            this.labelAppEndhour.Text = "Đang tải...";
             // 
             // labelAppStartHour
             // 
@@ -207,15 +211,15 @@
             this.labelAppStartHour.Location = new System.Drawing.Point(213, 209);
             this.labelAppStartHour.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppStartHour.Name = "labelAppStartHour";
-            this.labelAppStartHour.Size = new System.Drawing.Size(74, 29);
+            this.labelAppStartHour.Size = new System.Drawing.Size(113, 29);
             this.labelAppStartHour.TabIndex = 0;
-            this.labelAppStartHour.Text = "label1";
+            this.labelAppStartHour.Text = "Đang tải...";
             // 
             // AppointmentDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(776, 567);
+            this.ClientSize = new System.Drawing.Size(812, 567);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dgvParticipants);
             this.Controls.Add(this.listViewReminder);
@@ -233,7 +237,7 @@
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelAppDetail);
             this.Font = new System.Drawing.Font("Calibri", 14.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AppointmentDetailForm";
             this.Text = "AppointmentDetailForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgvParticipants)).EndInit();
@@ -253,12 +257,12 @@
         private System.Windows.Forms.Label labelReminder;
         private System.Windows.Forms.ListView listViewReminder;
         private System.Windows.Forms.Label labelParticipants;
-        private System.Windows.Forms.DataGridView dgvParticipants;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label labelAppName;
         private System.Windows.Forms.Label labelAppLocation;
         private System.Windows.Forms.Label labelAppDate;
         private System.Windows.Forms.Label labelAppEndhour;
         private System.Windows.Forms.Label labelAppStartHour;
+        private System.Windows.Forms.DataGridView dgvParticipants;
     }
 }

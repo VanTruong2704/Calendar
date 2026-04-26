@@ -106,7 +106,7 @@
             this.Font = new System.Drawing.Font("Calibri", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Lịch của tôi";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -33,6 +33,9 @@ namespace Calendar
     partial void InsertAppointment(Appointment instance);
     partial void UpdateAppointment(Appointment instance);
     partial void DeleteAppointment(Appointment instance);
+    partial void InsertParticipant(Participant instance);
+    partial void UpdateParticipant(Participant instance);
+    partial void DeleteParticipant(Participant instance);
     partial void InsertReminder(Reminder instance);
     partial void UpdateReminder(Reminder instance);
     partial void DeleteReminder(Reminder instance);
@@ -79,6 +82,14 @@ namespace Calendar
 			}
 		}
 		
+		public System.Data.Linq.Table<Participant> Participants
+		{
+			get
+			{
+				return this.GetTable<Participant>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Reminder> Reminders
 		{
 			get
@@ -104,19 +115,249 @@ namespace Calendar
 		
 		private int _Id;
 		
-		private int _UserId;
-		
 		private System.DateTime _StartTime;
 		
 		private System.DateTime _EndTime;
 		
-		private string _AppointmentName;
+		private string _Name;
 		
 		private string _Location;
 		
 		private bool _Type;
 		
+		private EntitySet<Participant> _Participants;
+		
 		private EntitySet<Reminder> _Reminders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.DateTime value);
+    partial void OnEndTimeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnLocationChanging(string value);
+    partial void OnLocationChanged();
+    partial void OnTypeChanging(bool value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public Appointment()
+		{
+			this._Participants = new EntitySet<Participant>(new Action<Participant>(this.attach_Participants), new Action<Participant>(this.detach_Participants));
+			this._Reminders = new EntitySet<Reminder>(new Action<Reminder>(this.attach_Reminders), new Action<Reminder>(this.detach_Reminders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Location", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Location
+		{
+			get
+			{
+				return this._Location;
+			}
+			set
+			{
+				if ((this._Location != value))
+				{
+					this.OnLocationChanging(value);
+					this.SendPropertyChanging();
+					this._Location = value;
+					this.SendPropertyChanged("Location");
+					this.OnLocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Bit NOT NULL")]
+		public bool Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Participant", Storage="_Participants", ThisKey="Id", OtherKey="AppointmentId")]
+		public EntitySet<Participant> Participants
+		{
+			get
+			{
+				return this._Participants;
+			}
+			set
+			{
+				this._Participants.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Reminder", Storage="_Reminders", ThisKey="Id", OtherKey="AppointmentId")]
+		public EntitySet<Reminder> Reminders
+		{
+			get
+			{
+				return this._Reminders;
+			}
+			set
+			{
+				this._Reminders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Participants(Participant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = this;
+		}
+		
+		private void detach_Participants(Participant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = null;
+		}
+		
+		private void attach_Reminders(Reminder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = this;
+		}
+		
+		private void detach_Reminders(Reminder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Participant")]
+	public partial class Participant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _UserId;
+		
+		private int _AppointmentId;
+		
+		private EntityRef<Appointment> _Appointment;
 		
 		private EntityRef<User> _User;
 		
@@ -128,21 +369,13 @@ namespace Calendar
     partial void OnIdChanged();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
-    partial void OnStartTimeChanging(System.DateTime value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.DateTime value);
-    partial void OnEndTimeChanged();
-    partial void OnAppointmentNameChanging(string value);
-    partial void OnAppointmentNameChanged();
-    partial void OnLocationChanging(string value);
-    partial void OnLocationChanged();
-    partial void OnTypeChanging(bool value);
-    partial void OnTypeChanged();
+    partial void OnAppointmentIdChanging(int value);
+    partial void OnAppointmentIdChanged();
     #endregion
 		
-		public Appointment()
+		public Participant()
 		{
-			this._Reminders = new EntitySet<Reminder>(new Action<Reminder>(this.attach_Reminders), new Action<Reminder>(this.detach_Reminders));
+			this._Appointment = default(EntityRef<Appointment>);
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -191,120 +424,65 @@ namespace Calendar
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime NOT NULL")]
-		public System.DateTime StartTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="Int NOT NULL")]
+		public int AppointmentId
 		{
 			get
 			{
-				return this._StartTime;
+				return this._AppointmentId;
 			}
 			set
 			{
-				if ((this._StartTime != value))
+				if ((this._AppointmentId != value))
 				{
-					this.OnStartTimeChanging(value);
+					if (this._Appointment.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAppointmentIdChanging(value);
 					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
+					this._AppointmentId = value;
+					this.SendPropertyChanged("AppointmentId");
+					this.OnAppointmentIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime NOT NULL")]
-		public System.DateTime EndTime
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Participant", Storage="_Appointment", ThisKey="AppointmentId", OtherKey="Id", IsForeignKey=true)]
+		public Appointment Appointment
 		{
 			get
 			{
-				return this._EndTime;
+				return this._Appointment.Entity;
 			}
 			set
 			{
-				if ((this._EndTime != value))
+				Appointment previousValue = this._Appointment.Entity;
+				if (((previousValue != value) 
+							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnEndTimeChanging(value);
 					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
+					if ((previousValue != null))
+					{
+						this._Appointment.Entity = null;
+						previousValue.Participants.Remove(this);
+					}
+					this._Appointment.Entity = value;
+					if ((value != null))
+					{
+						value.Participants.Add(this);
+						this._AppointmentId = value.Id;
+					}
+					else
+					{
+						this._AppointmentId = default(int);
+					}
+					this.SendPropertyChanged("Appointment");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string AppointmentName
-		{
-			get
-			{
-				return this._AppointmentName;
-			}
-			set
-			{
-				if ((this._AppointmentName != value))
-				{
-					this.OnAppointmentNameChanging(value);
-					this.SendPropertyChanging();
-					this._AppointmentName = value;
-					this.SendPropertyChanged("AppointmentName");
-					this.OnAppointmentNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Location", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Location
-		{
-			get
-			{
-				return this._Location;
-			}
-			set
-			{
-				if ((this._Location != value))
-				{
-					this.OnLocationChanging(value);
-					this.SendPropertyChanging();
-					this._Location = value;
-					this.SendPropertyChanged("Location");
-					this.OnLocationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Bit NOT NULL")]
-		public bool Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Reminder", Storage="_Reminders", ThisKey="Id", OtherKey="AppointmentId")]
-		public EntitySet<Reminder> Reminders
-		{
-			get
-			{
-				return this._Reminders;
-			}
-			set
-			{
-				this._Reminders.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Participant", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -321,12 +499,12 @@ namespace Calendar
 					if ((previousValue != null))
 					{
 						this._User.Entity = null;
-						previousValue.Appointments.Remove(this);
+						previousValue.Participants.Remove(this);
 					}
 					this._User.Entity = value;
 					if ((value != null))
 					{
-						value.Appointments.Add(this);
+						value.Participants.Add(this);
 						this._UserId = value.Id;
 					}
 					else
@@ -356,18 +534,6 @@ namespace Calendar
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Reminders(Reminder entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = this;
-		}
-		
-		private void detach_Reminders(Reminder entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = null;
 		}
 	}
 	
@@ -599,7 +765,7 @@ namespace Calendar
 		
 		private string _Email;
 		
-		private EntitySet<Appointment> _Appointments;
+		private EntitySet<Participant> _Participants;
 		
 		private EntitySet<Reminder> _Reminders;
 		
@@ -617,7 +783,7 @@ namespace Calendar
 		
 		public User()
 		{
-			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
+			this._Participants = new EntitySet<Participant>(new Action<Participant>(this.attach_Participants), new Action<Participant>(this.detach_Participants));
 			this._Reminders = new EntitySet<Reminder>(new Action<Reminder>(this.attach_Reminders), new Action<Reminder>(this.detach_Reminders));
 			OnCreated();
 		}
@@ -682,16 +848,16 @@ namespace Calendar
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_Appointments", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<Appointment> Appointments
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Participant", Storage="_Participants", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<Participant> Participants
 		{
 			get
 			{
-				return this._Appointments;
+				return this._Participants;
 			}
 			set
 			{
-				this._Appointments.Assign(value);
+				this._Participants.Assign(value);
 			}
 		}
 		
@@ -728,13 +894,13 @@ namespace Calendar
 			}
 		}
 		
-		private void attach_Appointments(Appointment entity)
+		private void attach_Participants(Participant entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = this;
 		}
 		
-		private void detach_Appointments(Appointment entity)
+		private void detach_Participants(Participant entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;

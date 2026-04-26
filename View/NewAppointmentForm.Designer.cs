@@ -112,7 +112,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Location = new System.Drawing.Point(176, 297);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(162, 42);
             this.btnConfirm.TabIndex = 2;
@@ -123,19 +123,20 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(403, 297);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(162, 42);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Huỷ bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // rbSingle
             // 
             this.rbSingle.AutoSize = true;
             this.rbSingle.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbSingle.Location = new System.Drawing.Point(21, 21);
-            this.rbSingle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbSingle.Margin = new System.Windows.Forms.Padding(2);
             this.rbSingle.Name = "rbSingle";
             this.rbSingle.Size = new System.Drawing.Size(72, 31);
             this.rbSingle.TabIndex = 3;
@@ -148,7 +149,7 @@
             this.rbGroup.AutoSize = true;
             this.rbGroup.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbGroup.Location = new System.Drawing.Point(179, 22);
-            this.rbGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbGroup.Margin = new System.Windows.Forms.Padding(2);
             this.rbGroup.Name = "rbGroup";
             this.rbGroup.Size = new System.Drawing.Size(89, 31);
             this.rbGroup.TabIndex = 3;
@@ -159,7 +160,7 @@
             // tbNameApp
             // 
             this.tbNameApp.Location = new System.Drawing.Point(251, 76);
-            this.tbNameApp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNameApp.Margin = new System.Windows.Forms.Padding(2);
             this.tbNameApp.Name = "tbNameApp";
             this.tbNameApp.Size = new System.Drawing.Size(447, 36);
             this.tbNameApp.TabIndex = 4;
@@ -167,7 +168,7 @@
             // tbLocation
             // 
             this.tbLocation.Location = new System.Drawing.Point(251, 128);
-            this.tbLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLocation.Margin = new System.Windows.Forms.Padding(2);
             this.tbLocation.Name = "tbLocation";
             this.tbLocation.Size = new System.Drawing.Size(447, 36);
             this.tbLocation.TabIndex = 4;
@@ -177,9 +178,9 @@
             this.groupBoxType.Controls.Add(this.rbGroup);
             this.groupBoxType.Controls.Add(this.rbSingle);
             this.groupBoxType.Location = new System.Drawing.Point(251, 224);
-            this.groupBoxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxType.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxType.Name = "groupBoxType";
-            this.groupBoxType.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxType.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxType.Size = new System.Drawing.Size(296, 58);
             this.groupBoxType.TabIndex = 6;
             this.groupBoxType.TabStop = false;

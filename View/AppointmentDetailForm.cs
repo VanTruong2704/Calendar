@@ -29,7 +29,24 @@ namespace Calendar.View
             labelAppEndhour.Text = app.EndHour;
             //labelType.Text = app.Type;
 
+            if (listViewReminder.Columns.Count == 0)
+            {
+                listViewReminder.Columns.Add("Thời gian nhắc");
+                listViewReminder.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+
+            listViewReminder.Items.Clear();
             listViewReminder.Items.AddRange(ReminderBLL.GetReminderViews(appId).Select(r => new ListViewItem(r)).ToArray());
+
+            List<UserView> participants = AppointmentBLL.GetParticipants(appId);
+            if (participants.Count > 0)
+            {
+                dgvParticipants.DataSource = participants;
+                dgvParticipants.Columns[0].HeaderText = "Tên";
+                dgvParticipants.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvParticipants.Columns[1].HeaderText = "Email";
+                dgvParticipants.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

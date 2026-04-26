@@ -25,10 +25,11 @@ namespace Calendar.View
             dgvAppointment.DataSource = AppointmentBLL.GetAppointmentViews();
             dgvAppointment.Columns[0].Visible = false;
             dgvAppointment.Columns[1].HeaderText = "Tên cuộc hẹn";
-            dgvAppointment.Columns[2].HeaderText = "Ngày diễn ra";
-            dgvAppointment.Columns[3].HeaderText = "Giờ bắt đầu";
-            dgvAppointment.Columns[4].HeaderText = "Giờ kết thúc";
-            dgvAppointment.Columns[5].HeaderText = "Loại";
+            dgvAppointment.Columns[2].HeaderText = "Vị trí";
+            dgvAppointment.Columns[3].HeaderText = "Ngày diễn ra";
+            dgvAppointment.Columns[4].HeaderText = "Giờ bắt đầu";
+            dgvAppointment.Columns[5].HeaderText = "Giờ kết thúc";
+            dgvAppointment.Columns[6].HeaderText = "Loại";
         }
 
         private void btnViewDetail_Click(object sender, EventArgs e)
@@ -37,5 +38,27 @@ namespace Calendar.View
             f.ShowDialog();
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butDel_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa cuộc hẹn này?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int appId = (int)dgvAppointment.SelectedRows[0].Cells[0].Value;
+                if (AppointmentBLL.DeleteAppointment(appId))
+                {
+                    MessageBox.Show("Xóa cuộc hẹn thành công.");
+                    Init();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa cuộc hẹn thất bại.");
+                }
+            }
+        }
     }
 }

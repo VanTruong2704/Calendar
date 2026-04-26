@@ -71,10 +71,10 @@
             // listViewReminder
             // 
             this.listViewReminder.HideSelection = false;
-            this.listViewReminder.Location = new System.Drawing.Point(77, 131);
+            this.listViewReminder.Location = new System.Drawing.Point(54, 131);
             this.listViewReminder.Margin = new System.Windows.Forms.Padding(2);
             this.listViewReminder.Name = "listViewReminder";
-            this.listViewReminder.Size = new System.Drawing.Size(308, 130);
+            this.listViewReminder.Size = new System.Drawing.Size(367, 130);
             this.listViewReminder.TabIndex = 3;
             this.listViewReminder.UseCompatibleStateImageBehavior = false;
             this.listViewReminder.View = System.Windows.Forms.View.Details;

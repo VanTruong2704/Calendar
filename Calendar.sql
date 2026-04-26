@@ -12,14 +12,19 @@ go
 
 create table Appointment (
 	Id int identity(0, 1) primary key,
-	UserId int not null,
 	StartTime datetime not null,
 	EndTime datetime not null,
-	AppointmentName nvarchar(255) not null,
+	[Name] nvarchar(255) not null,
 	[Location] NVARCHAR(255) not null,
 	[Type] BIT NOT NULL, -- 1 = Single, 0 = Group
-	foreign key (UserId) references [User](Id)
 );
+
+create table Participant (
+	Id int identity(0, 1) primary key,
+	UserId int not null references [User](Id),
+	AppointmentId int not null references Appointment(Id)
+)
+
 go
 create table Reminder (
 	Id int identity(0, 1) primary key,

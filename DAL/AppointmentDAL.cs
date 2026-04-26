@@ -10,6 +10,31 @@ namespace Calendar.DAL
     {
         private static DataClasses1DataContext db = new DataClasses1DataContext();
 
+        public static List<User> GetParticipants(int appId)
+        {
+            var q = from p in db.Users
+                    from a in p.Appointments
+                    where a.Id == appId 
+                    select p;
+            return q.ToList();
+        }
+
+        public static List<Appointment> GetConflictsInRange(int userId, DateTime start, DateTime end)
+        {
+            var q = from p in db.Appointments
+                    where p.UserId == userId && ((p.StartTime >= start && p.StartTime < end) || (p.EndTime > start && p.EndTime <= end) || (p.StartTime <= start && p.EndTime >= end))
+                    select p;
+            return q.ToList();
+        }
+
+        public static List<Appointment> GetGroupMeetings(int name)
+        {
+            var q = from p in db.Appointments
+                    where p.UserId == name && p.Type == false
+                    select p;
+            return q.ToList();
+        }
+
         public static List<Appointment> GetAppointments(int userId)
         {
             var q = from p in db.Appointments
@@ -31,7 +56,7 @@ namespace Calendar.DAL
             try
             {
                 db.Appointments.InsertOnSubmit(appointment);
-            } 
+            }
             catch (Exception e)
             {
                 return -1;
@@ -65,7 +90,7 @@ namespace Calendar.DAL
             {
                 return false;
             }
-            
+
             return true;
         }
 
@@ -87,6 +112,30 @@ namespace Calendar.DAL
             }
 
             return true;
+        }
+
+        public static int JoinGroupMeeting(int appId, int userId)
+        {
+            var q = db.Appointments.Where(p => p.Id == appId);
+
+            Appointment app = q.FirstOrDefault();
+
+            if (app == null || app.Type == true) return -1;
+
+            var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
+            if (user == null) return -1;
+
+            try
+            {
+                user.Appointments.Add(app);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+
+            return app.Id;
         }
     }
 }

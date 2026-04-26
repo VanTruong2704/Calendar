@@ -28,9 +28,12 @@ namespace Calendar.View
 
             if (UserBLL.login(tbName.Text, tbEmail.Text))
             {
-                MainForm mainForm = new MainForm();
-                mainForm.Show();
                 this.Hide();
+
+                MainForm mainForm = new MainForm();
+                mainForm.ShowDialog();
+                
+                this.Close();
             }
             else
             {
