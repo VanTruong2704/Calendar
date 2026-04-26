@@ -6,6 +6,7 @@ use Calendar;
 create table [User] (
 	Id int primary key,
 	[Name] nvarchar(255) not null
+	Email nvarchar(255) not null
 );
 
 create table Appointment (
@@ -15,6 +16,7 @@ create table Appointment (
 	StartHour time not null,
 	EndHour time not null,
 	AppointmentName nvarchar(255) not null,
+	[Location] NVARCHAR(255) not null,
 	[Type] INT NOT NULL, -- 1 = Group, 2 = Single
 	foreign key (UserId) references [User](Id)
 );
