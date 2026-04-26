@@ -40,61 +40,72 @@
             // 
             this.labelReminder.AutoSize = true;
             this.labelReminder.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReminder.Location = new System.Drawing.Point(249, 33);
+            this.labelReminder.Location = new System.Drawing.Point(178, 24);
+            this.labelReminder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelReminder.Name = "labelReminder";
-            this.labelReminder.Size = new System.Drawing.Size(159, 51);
+            this.labelReminder.Size = new System.Drawing.Size(115, 37);
             this.labelReminder.TabIndex = 0;
             this.labelReminder.Text = "Bộ nhắc";
             // 
             // cbbReminder
             // 
+            this.cbbReminder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbReminder.FormattingEnabled = true;
-            this.cbbReminder.Location = new System.Drawing.Point(75, 105);
+            this.cbbReminder.Location = new System.Drawing.Point(54, 75);
+            this.cbbReminder.Margin = new System.Windows.Forms.Padding(2);
             this.cbbReminder.Name = "cbbReminder";
-            this.cbbReminder.Size = new System.Drawing.Size(367, 47);
+            this.cbbReminder.Size = new System.Drawing.Size(263, 36);
             this.cbbReminder.TabIndex = 1;
             // 
             // btnAddReminder
             // 
-            this.btnAddReminder.Location = new System.Drawing.Point(460, 99);
+            this.btnAddReminder.Location = new System.Drawing.Point(329, 71);
+            this.btnAddReminder.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddReminder.Name = "btnAddReminder";
-            this.btnAddReminder.Size = new System.Drawing.Size(129, 56);
+            this.btnAddReminder.Size = new System.Drawing.Size(92, 40);
             this.btnAddReminder.TabIndex = 2;
             this.btnAddReminder.Text = "Thêm ";
             this.btnAddReminder.UseVisualStyleBackColor = true;
+            this.btnAddReminder.Click += new System.EventHandler(this.btnAddReminder_Click);
             // 
             // listViewReminder
             // 
             this.listViewReminder.HideSelection = false;
-            this.listViewReminder.Location = new System.Drawing.Point(108, 183);
+            this.listViewReminder.Location = new System.Drawing.Point(77, 131);
+            this.listViewReminder.Margin = new System.Windows.Forms.Padding(2);
             this.listViewReminder.Name = "listViewReminder";
-            this.listViewReminder.Size = new System.Drawing.Size(430, 180);
+            this.listViewReminder.Size = new System.Drawing.Size(308, 130);
             this.listViewReminder.TabIndex = 3;
             this.listViewReminder.UseCompatibleStateImageBehavior = false;
+            this.listViewReminder.View = System.Windows.Forms.View.Details;
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(108, 394);
+            this.btnConfirm.Location = new System.Drawing.Point(77, 281);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(195, 56);
+            this.btnConfirm.Size = new System.Drawing.Size(139, 40);
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(346, 394);
+            this.btnCancel.Location = new System.Drawing.Point(247, 281);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(192, 56);
+            this.btnCancel.Size = new System.Drawing.Size(137, 40);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Huỷ bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // Reminder
+            // ReminderForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(677, 486);
+            this.ClientSize = new System.Drawing.Size(484, 347);
             this.Controls.Add(this.listViewReminder);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
@@ -102,8 +113,8 @@
             this.Controls.Add(this.cbbReminder);
             this.Controls.Add(this.labelReminder);
             this.Font = new System.Drawing.Font("Calibri", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Reminder";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "ReminderForm";
             this.Text = "Reminder";
             this.ResumeLayout(false);
             this.PerformLayout();

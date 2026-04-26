@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Calendar.BLL;
+using Calendar.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +14,27 @@ namespace Calendar.View
 {
     public partial class AppointmentDetailForm : Form
     {
-        public AppointmentDetailForm()
+        public AppointmentDetailForm(int appId)
         {
             InitializeComponent();
+            Init(appId);
+        }
+        public void Init(int appId)
+        {
+            AppointmentView app = AppointmentBLL.GetAppointmentView(appId);
+            labelAppName.Text = app.Name;
+            labelAppLocation.Text = app.Location;
+            labelAppDate.Text = app.Date;
+            labelAppStartHour.Text = app.StartHour;
+            labelAppEndhour.Text = app.EndHour;
+            //labelType.Text = app.Type;
+
+            listViewReminder.Items.AddRange(ReminderBLL.GetReminderViews(appId).Select(r => new ListViewItem(r)).ToArray());
         }
 
-        private void AppointmentDetailForm_Load(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void labelReminder_Click(object sender, EventArgs e)
-        {
-
+            this.Dispose();
         }
     }
 }

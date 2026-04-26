@@ -41,63 +41,74 @@
             // 
             this.labelListAppointment.AutoSize = true;
             this.labelListAppointment.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelListAppointment.Location = new System.Drawing.Point(398, 18);
+            this.labelListAppointment.Location = new System.Drawing.Point(284, 13);
+            this.labelListAppointment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelListAppointment.Name = "labelListAppointment";
-            this.labelListAppointment.Size = new System.Drawing.Size(429, 51);
+            this.labelListAppointment.Size = new System.Drawing.Size(309, 37);
             this.labelListAppointment.TabIndex = 0;
             this.labelListAppointment.Text = "Danh sách các cuộc hẹn";
             // 
             // dgvAppointment
             // 
             this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAppointment.Location = new System.Drawing.Point(51, 89);
+            this.dgvAppointment.Location = new System.Drawing.Point(36, 64);
+            this.dgvAppointment.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvAppointment.MultiSelect = false;
             this.dgvAppointment.Name = "dgvAppointment";
+            this.dgvAppointment.ReadOnly = true;
+            this.dgvAppointment.RowHeadersVisible = false;
             this.dgvAppointment.RowHeadersWidth = 72;
             this.dgvAppointment.RowTemplate.Height = 31;
-            this.dgvAppointment.Size = new System.Drawing.Size(1095, 373);
+            this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAppointment.Size = new System.Drawing.Size(782, 266);
             this.dgvAppointment.TabIndex = 1;
             // 
             // btnSaveChange
             // 
-            this.btnSaveChange.Location = new System.Drawing.Point(94, 511);
+            this.btnSaveChange.Location = new System.Drawing.Point(67, 365);
+            this.btnSaveChange.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveChange.Name = "btnSaveChange";
-            this.btnSaveChange.Size = new System.Drawing.Size(221, 56);
+            this.btnSaveChange.Size = new System.Drawing.Size(158, 40);
             this.btnSaveChange.TabIndex = 2;
             this.btnSaveChange.Text = "Lưu thay đổi";
             this.btnSaveChange.UseVisualStyleBackColor = true;
             // 
             // btnViewDetail
             // 
-            this.btnViewDetail.Location = new System.Drawing.Point(369, 511);
+            this.btnViewDetail.Location = new System.Drawing.Point(264, 365);
+            this.btnViewDetail.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewDetail.Name = "btnViewDetail";
-            this.btnViewDetail.Size = new System.Drawing.Size(216, 56);
+            this.btnViewDetail.Size = new System.Drawing.Size(154, 40);
             this.btnViewDetail.TabIndex = 2;
             this.btnViewDetail.Text = "Xem chi tiết";
             this.btnViewDetail.UseVisualStyleBackColor = true;
+            this.btnViewDetail.Click += new System.EventHandler(this.btnViewDetail_Click);
             // 
             // butDel
             // 
-            this.butDel.Location = new System.Drawing.Point(671, 511);
+            this.butDel.Location = new System.Drawing.Point(479, 365);
+            this.butDel.Margin = new System.Windows.Forms.Padding(2);
             this.butDel.Name = "butDel";
-            this.butDel.Size = new System.Drawing.Size(173, 56);
+            this.butDel.Size = new System.Drawing.Size(124, 40);
             this.butDel.TabIndex = 2;
             this.butDel.Text = "Xoá";
             this.butDel.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(934, 511);
+            this.btnExit.Location = new System.Drawing.Point(667, 365);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(158, 56);
+            this.btnExit.Size = new System.Drawing.Size(113, 40);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             // 
             // MyAppointmentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1212, 607);
+            this.ClientSize = new System.Drawing.Size(866, 434);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.butDel);
             this.Controls.Add(this.btnViewDetail);
@@ -105,7 +116,7 @@
             this.Controls.Add(this.dgvAppointment);
             this.Controls.Add(this.labelListAppointment);
             this.Font = new System.Drawing.Font("Calibri", 14.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MyAppointmentForm";
             this.Text = "MyAppointmentForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();

@@ -19,8 +19,19 @@ namespace Calendar.View
 
         private void btnAddAppointment_Click(object sender, EventArgs e)
         {
-            NewAppointmentForm form = new NewAppointmentForm();
+            NewAppointmentForm form = new NewAppointmentForm(monthCalendar.SelectionStart);
             form.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnMyAppointment_Click(object sender, EventArgs e)
+        {
+            Form f = new MyAppointmentForm();
+            f.ShowDialog();
         }
     }
 }

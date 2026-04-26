@@ -40,20 +40,21 @@
             this.rbGroup = new System.Windows.Forms.RadioButton();
             this.tbNameApp = new System.Windows.Forms.TextBox();
             this.tbLocation = new System.Windows.Forms.TextBox();
-            this.cbbStartHour = new System.Windows.Forms.ComboBox();
-            this.cbbEndHour = new System.Windows.Forms.ComboBox();
             this.groupBoxType = new System.Windows.Forms.GroupBox();
+            this.nudStartHour = new System.Windows.Forms.NumericUpDown();
+            this.nudEndHour = new System.Windows.Forms.NumericUpDown();
             this.groupBoxType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAppointmentDetail
             // 
             this.labelAppointmentDetail.AutoSize = true;
             this.labelAppointmentDetail.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAppointmentDetail.Location = new System.Drawing.Point(376, 29);
-            this.labelAppointmentDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAppointmentDetail.Location = new System.Drawing.Point(269, 21);
             this.labelAppointmentDetail.Name = "labelAppointmentDetail";
-            this.labelAppointmentDetail.Size = new System.Drawing.Size(309, 51);
+            this.labelAppointmentDetail.Size = new System.Drawing.Size(224, 37);
             this.labelAppointmentDetail.TabIndex = 0;
             this.labelAppointmentDetail.Text = "Chi tiết cuộc hẹn";
             this.labelAppointmentDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -61,53 +62,59 @@
             // labelAppointmentName
             // 
             this.labelAppointmentName.AutoSize = true;
-            this.labelAppointmentName.Location = new System.Drawing.Point(91, 106);
+            this.labelAppointmentName.Location = new System.Drawing.Point(65, 76);
+            this.labelAppointmentName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAppointmentName.Name = "labelAppointmentName";
-            this.labelAppointmentName.Size = new System.Drawing.Size(198, 40);
+            this.labelAppointmentName.Size = new System.Drawing.Size(148, 29);
             this.labelAppointmentName.TabIndex = 1;
             this.labelAppointmentName.Text = "Tên cuộc hẹn:";
             // 
             // labelLocation
             // 
             this.labelLocation.AutoSize = true;
-            this.labelLocation.Location = new System.Drawing.Point(91, 179);
+            this.labelLocation.Location = new System.Drawing.Point(65, 128);
+            this.labelLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(91, 40);
+            this.labelLocation.Size = new System.Drawing.Size(66, 29);
             this.labelLocation.TabIndex = 1;
             this.labelLocation.Text = "Vị trí:";
             // 
             // labelStartHour
             // 
             this.labelStartHour.AutoSize = true;
-            this.labelStartHour.Location = new System.Drawing.Point(87, 271);
+            this.labelStartHour.Location = new System.Drawing.Point(62, 194);
+            this.labelStartHour.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStartHour.Name = "labelStartHour";
-            this.labelStartHour.Size = new System.Drawing.Size(259, 40);
+            this.labelStartHour.Size = new System.Drawing.Size(135, 29);
             this.labelStartHour.TabIndex = 1;
-            this.labelStartHour.Text = "Thời gian bắt đầu:";
+            this.labelStartHour.Text = "Giờ bắt đầu:";
             // 
             // labelEndHour
             // 
             this.labelEndHour.AutoSize = true;
-            this.labelEndHour.Location = new System.Drawing.Point(524, 268);
+            this.labelEndHour.Location = new System.Drawing.Point(425, 196);
+            this.labelEndHour.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEndHour.Name = "labelEndHour";
-            this.labelEndHour.Size = new System.Drawing.Size(264, 40);
+            this.labelEndHour.Size = new System.Drawing.Size(138, 29);
             this.labelEndHour.TabIndex = 1;
-            this.labelEndHour.Text = "Thời gian kết thúc:";
+            this.labelEndHour.Text = "Giờ kết thúc:";
             // 
             // labelType
             // 
             this.labelType.AutoSize = true;
-            this.labelType.Location = new System.Drawing.Point(88, 345);
+            this.labelType.Location = new System.Drawing.Point(63, 246);
+            this.labelType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(201, 40);
+            this.labelType.Size = new System.Drawing.Size(150, 29);
             this.labelType.TabIndex = 1;
             this.labelType.Text = "Kiểu cuộc hẹn";
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(247, 416);
+            this.btnConfirm.Location = new System.Drawing.Point(176, 297);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(227, 59);
+            this.btnConfirm.Size = new System.Drawing.Size(162, 42);
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.UseVisualStyleBackColor = true;
@@ -115,9 +122,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(564, 416);
+            this.btnCancel.Location = new System.Drawing.Point(403, 297);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(227, 59);
+            this.btnCancel.Size = new System.Drawing.Size(162, 42);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Huỷ bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -126,9 +134,10 @@
             // 
             this.rbSingle.AutoSize = true;
             this.rbSingle.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSingle.Location = new System.Drawing.Point(30, 30);
+            this.rbSingle.Location = new System.Drawing.Point(21, 21);
+            this.rbSingle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbSingle.Name = "rbSingle";
-            this.rbSingle.Size = new System.Drawing.Size(94, 41);
+            this.rbSingle.Size = new System.Drawing.Size(72, 31);
             this.rbSingle.TabIndex = 3;
             this.rbSingle.TabStop = true;
             this.rbSingle.Text = "Đơn";
@@ -138,9 +147,10 @@
             // 
             this.rbGroup.AutoSize = true;
             this.rbGroup.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbGroup.Location = new System.Drawing.Point(250, 31);
+            this.rbGroup.Location = new System.Drawing.Point(179, 22);
+            this.rbGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbGroup.Name = "rbGroup";
-            this.rbGroup.Size = new System.Drawing.Size(117, 41);
+            this.rbGroup.Size = new System.Drawing.Size(89, 31);
             this.rbGroup.TabIndex = 3;
             this.rbGroup.TabStop = true;
             this.rbGroup.Text = "Nhóm";
@@ -148,53 +158,64 @@
             // 
             // tbNameApp
             // 
-            this.tbNameApp.Location = new System.Drawing.Point(352, 106);
+            this.tbNameApp.Location = new System.Drawing.Point(251, 76);
+            this.tbNameApp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbNameApp.Name = "tbNameApp";
-            this.tbNameApp.Size = new System.Drawing.Size(624, 47);
+            this.tbNameApp.Size = new System.Drawing.Size(447, 36);
             this.tbNameApp.TabIndex = 4;
             // 
             // tbLocation
             // 
-            this.tbLocation.Location = new System.Drawing.Point(352, 179);
+            this.tbLocation.Location = new System.Drawing.Point(251, 128);
+            this.tbLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbLocation.Name = "tbLocation";
-            this.tbLocation.Size = new System.Drawing.Size(624, 47);
+            this.tbLocation.Size = new System.Drawing.Size(447, 36);
             this.tbLocation.TabIndex = 4;
-            // 
-            // cbbStartHour
-            // 
-            this.cbbStartHour.FormattingEnabled = true;
-            this.cbbStartHour.Location = new System.Drawing.Point(352, 261);
-            this.cbbStartHour.Name = "cbbStartHour";
-            this.cbbStartHour.Size = new System.Drawing.Size(125, 47);
-            this.cbbStartHour.TabIndex = 5;
-            // 
-            // cbbEndHour
-            // 
-            this.cbbEndHour.FormattingEnabled = true;
-            this.cbbEndHour.Location = new System.Drawing.Point(794, 261);
-            this.cbbEndHour.Name = "cbbEndHour";
-            this.cbbEndHour.Size = new System.Drawing.Size(114, 47);
-            this.cbbEndHour.TabIndex = 5;
-            this.cbbEndHour.SelectedIndexChanged += new System.EventHandler(this.cbbEndHour_SelectedIndexChanged);
             // 
             // groupBoxType
             // 
             this.groupBoxType.Controls.Add(this.rbGroup);
             this.groupBoxType.Controls.Add(this.rbSingle);
-            this.groupBoxType.Location = new System.Drawing.Point(352, 314);
+            this.groupBoxType.Location = new System.Drawing.Point(251, 224);
+            this.groupBoxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBoxType.Name = "groupBoxType";
-            this.groupBoxType.Size = new System.Drawing.Size(414, 81);
+            this.groupBoxType.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxType.Size = new System.Drawing.Size(296, 58);
             this.groupBoxType.TabIndex = 6;
             this.groupBoxType.TabStop = false;
             // 
+            // nudStartHour
+            // 
+            this.nudStartHour.Location = new System.Drawing.Point(251, 192);
+            this.nudStartHour.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.nudStartHour.Name = "nudStartHour";
+            this.nudStartHour.Size = new System.Drawing.Size(120, 36);
+            this.nudStartHour.TabIndex = 7;
+            // 
+            // nudEndHour
+            // 
+            this.nudEndHour.Location = new System.Drawing.Point(578, 196);
+            this.nudEndHour.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.nudEndHour.Name = "nudEndHour";
+            this.nudEndHour.Size = new System.Drawing.Size(120, 36);
+            this.nudEndHour.TabIndex = 7;
+            // 
             // NewAppointmentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1077, 503);
+            this.ClientSize = new System.Drawing.Size(769, 359);
+            this.Controls.Add(this.nudEndHour);
+            this.Controls.Add(this.nudStartHour);
             this.Controls.Add(this.groupBoxType);
-            this.Controls.Add(this.cbbEndHour);
-            this.Controls.Add(this.cbbStartHour);
             this.Controls.Add(this.tbLocation);
             this.Controls.Add(this.tbNameApp);
             this.Controls.Add(this.btnCancel);
@@ -206,11 +227,13 @@
             this.Controls.Add(this.labelAppointmentName);
             this.Controls.Add(this.labelAppointmentDetail);
             this.Font = new System.Drawing.Font("Calibri", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NewAppointmentForm";
             this.Text = "AppointmentDetail";
             this.groupBoxType.ResumeLayout(false);
             this.groupBoxType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,8 +253,8 @@
         private System.Windows.Forms.RadioButton rbGroup;
         private System.Windows.Forms.TextBox tbNameApp;
         private System.Windows.Forms.TextBox tbLocation;
-        private System.Windows.Forms.ComboBox cbbStartHour;
-        private System.Windows.Forms.ComboBox cbbEndHour;
         private System.Windows.Forms.GroupBox groupBoxType;
+        private System.Windows.Forms.NumericUpDown nudStartHour;
+        private System.Windows.Forms.NumericUpDown nudEndHour;
     }
 }

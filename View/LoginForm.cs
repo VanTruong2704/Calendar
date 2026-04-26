@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calendar.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,8 +18,36 @@ namespace Calendar.View
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (tbName.Text == "" || tbEmail.Text == "")
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }
+
+            if (UserBLL.login(tbName.Text, tbEmail.Text))
+            {
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                //nếu sai thì prompt hỏi có muốn đăng ký không
+                DialogResult result = MessageBox.Show("Tài khoản không tồn tại. Bạn có muốn đăng ký không?", "Đăng ký", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (UserBLL.register(tbName.Text, tbEmail.Text))
+                    {
+                        MessageBox.Show("Đăng ký thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đăng ký thất bại");
+                    }
+                }
+            }
 
         }
     }
