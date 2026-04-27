@@ -1,5 +1,4 @@
 create database Calendar;
-go
 
 use Calendar;
 
@@ -8,7 +7,6 @@ create table [User] (
 	[Name] nvarchar(255) not null,
 	Email nvarchar(255) not null UNIQUE
 );
-go
 
 create table Appointment (
 	Id int identity(0, 1) primary key,
@@ -25,7 +23,6 @@ create table Participant (
 	AppointmentId int not null references Appointment(Id)
 )
 
-go
 create table Reminder (
 	Id int identity(0, 1) primary key,
 	AppointmentId int not null,
@@ -34,18 +31,3 @@ create table Reminder (
 	foreign key (AppointmentId) references Appointment(Id),
 	foreign key (UserId) references [User](Id)
 );
-
-drop table Reminder;
-drop table Appointment;
-drop table [User]
-
-select * from [User]
-
-select * from Appointment
-
-select * from Reminder
-
-select * from Participant
-
-select * from Appointment a join Participant p on a.Id = p.AppointmentId
-where p.UserId = 1
