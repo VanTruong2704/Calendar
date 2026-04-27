@@ -39,7 +39,7 @@ namespace Calendar.View
             listViewReminder.Items.AddRange(ReminderBLL.GetReminderViews(appId).Select(r => new ListViewItem(r)).ToArray());
 
             List<UserView> participants = AppointmentBLL.GetParticipants(appId);
-            if (participants.Count > 0)
+            if (participants.Count > 0) 
             {
                 dgvParticipants.DataSource = participants;
                 dgvParticipants.Columns[0].HeaderText = "Tên";

@@ -23,11 +23,10 @@ namespace Calendar.BLL
 
             Appointment appointment = new Appointment
             {
-                AppointmentName = newApp.Name,
+                Name = newApp.Name,
                 Location = newApp.Location,
                 StartTime = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.StartHour, 0, 0),
                 EndTime = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.EndHour, 0, 0),
-                UserId = UserBLL.CurrentUser.Id,
                 Type = newApp.Type
             };
 
@@ -36,7 +35,7 @@ namespace Calendar.BLL
 
         public static bool DeleteAppointment(int appId)
         {
-            return AppointmentDAL.DeleteAppointment(appId);
+            return (AppointmentDAL.DeleteAppointment(appId));
         }
 
         public static List<AppointmentView> GetAppointmentViews()
@@ -45,7 +44,7 @@ namespace Calendar.BLL
             return appointments.Select(a => new AppointmentView
             {
                 Id = a.Id,
-                Name = a.AppointmentName,
+                Name = a.Name,
                 Location = a.Location,
                 Date = a.StartTime.Date.ToString("dd/MM/yyyy"),
                 StartHour = a.StartTime.ToString("hh:mm tt"),
@@ -59,7 +58,7 @@ namespace Calendar.BLL
             var a = AppointmentDAL.GetAppointment(appId);
             return new AppointmentView
             {
-                Name = a.AppointmentName,
+                Name = a.Name,
                 Location = a.Location,
                 Date = a.StartTime.Date.ToString("dd/MM/yyyy"),
                 StartHour = a.StartTime.ToString("hh:mm tt"),
@@ -78,10 +77,11 @@ namespace Calendar.BLL
         {
             string duration = end.Subtract(start).TotalHours.ToString();
 
-            var groupMeetings = AppointmentDAL.GetGroupMeetings(UserBLL.CurrentUser.Id);
+            var groupMeetings = AppointmentDAL.GetGroupMeetings();
             foreach (var meeting in groupMeetings)
             {
-                if (meeting.AppointmentName == name &&
+                if (meeting.Name == name && 
+                    meeting.StartTime.ToShortDateString() == start.ToShortDateString() &&
                     meeting.EndTime.Subtract(meeting.StartTime).TotalHours.ToString() == duration)
                 {
                     return meeting.Id;
@@ -91,26 +91,28 @@ namespace Calendar.BLL
             return -1;
         }
 
-        public static int ReplaceConficts(CreateAppointment newApp)
+        public static bool DeleteConficts(CreateAppointment newApp)
         {
             DateTime start = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.StartHour, 0, 0);
             DateTime end = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.EndHour, 0, 0);
             var conflicts = AppointmentDAL.GetConflictsInRange(UserBLL.CurrentUser.Id, start, end);
             foreach (var conflict in conflicts)
             {
-                AppointmentDAL.DeleteAppointment(conflict.Id);
+                if (!AppointmentDAL.DeleteAppointment(conflict.Id)) return false;
             }
-            return createAppointment(newApp);
+            return true;
         }
 
         public static int JoinGroupMeeting(int meetingId)
         {
+            if (ParticipantDAL.GetParticipant(meetingId, UserBLL.CurrentUser.Id) != null)
+                return -1;
             return AppointmentDAL.JoinGroupMeeting(meetingId, UserBLL.CurrentUser.Id);
         }
 
         public static List<UserView> GetParticipants(int appId)
         {
-            var participants = AppointmentDAL.GetParticipants(appId);
+            var participants = ParticipantDAL.GetParticipants(appId);
             return participants.Select(p => new UserView
             {
                 Name = p.Name,

@@ -115,7 +115,7 @@
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(162, 42);
-            this.btnConfirm.TabIndex = 2;
+            this.btnConfirm.TabIndex = 5;
             this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -126,7 +126,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(162, 42);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Huỷ bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -152,7 +152,7 @@
             this.rbGroup.Margin = new System.Windows.Forms.Padding(2);
             this.rbGroup.Name = "rbGroup";
             this.rbGroup.Size = new System.Drawing.Size(89, 31);
-            this.rbGroup.TabIndex = 3;
+            this.rbGroup.TabIndex = 4;
             this.rbGroup.TabStop = true;
             this.rbGroup.Text = "Nhóm";
             this.rbGroup.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             this.tbNameApp.Margin = new System.Windows.Forms.Padding(2);
             this.tbNameApp.Name = "tbNameApp";
             this.tbNameApp.Size = new System.Drawing.Size(447, 36);
-            this.tbNameApp.TabIndex = 4;
+            this.tbNameApp.TabIndex = 0;
             // 
             // tbLocation
             // 
@@ -171,7 +171,7 @@
             this.tbLocation.Margin = new System.Windows.Forms.Padding(2);
             this.tbLocation.Name = "tbLocation";
             this.tbLocation.Size = new System.Drawing.Size(447, 36);
-            this.tbLocation.TabIndex = 4;
+            this.tbLocation.TabIndex = 1;
             // 
             // groupBoxType
             // 
@@ -195,7 +195,7 @@
             0});
             this.nudStartHour.Name = "nudStartHour";
             this.nudStartHour.Size = new System.Drawing.Size(120, 36);
-            this.nudStartHour.TabIndex = 7;
+            this.nudStartHour.TabIndex = 2;
             // 
             // nudEndHour
             // 
@@ -207,7 +207,7 @@
             0});
             this.nudEndHour.Name = "nudEndHour";
             this.nudEndHour.Size = new System.Drawing.Size(120, 36);
-            this.nudEndHour.TabIndex = 7;
+            this.nudEndHour.TabIndex = 3;
             // 
             // NewAppointmentForm
             // 

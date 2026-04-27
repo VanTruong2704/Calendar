@@ -45,21 +45,30 @@ namespace Calendar
                     return;
                 }
                 
-                AppointmentBLL.ReplaceConficts(newApp);
+                AppointmentBLL.DeleteConficts(newApp);
             }
 
-            int meetingId = AppointmentBLL.HasGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0));
-
-            if (meetingId != -1)
+            if (newApp.Type == false)
             {
-                DialogResult result = MessageBox.Show("Cuộc hẹn nhóm này đã tồn tại. Bạn có muốn tham gia cuộc hẹn nhóm này không?", "Cuộc hẹn nhóm đã tồn tại", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                int meetingId = AppointmentBLL.HasGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0));
+
+                if (meetingId != -1)
                 {
-                    int groupAppId = AppointmentBLL.JoinGroupMeeting(meetingId);
-                    ReminderForm fo = new ReminderForm(groupAppId);
-                    fo.ShowDialog();
-                    this.Close();
-                    return;
+                    DialogResult result = MessageBox.Show("Cuộc hẹn nhóm này đã tồn tại. Bạn có muốn tham gia cuộc hẹn nhóm này không?", "Cuộc hẹn nhóm đã tồn tại", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        int groupAppId = AppointmentBLL.JoinGroupMeeting(meetingId);
+                        if (groupAppId == -1)
+                        {
+                            MessageBox.Show("Bạn đã tham gia cuộc hẹn nhóm này!");
+                            return;
+                        }
+
+                        ReminderForm fo = new ReminderForm(groupAppId);
+                        fo.ShowDialog();
+                        this.Close();
+                        return;
+                    }
                 }
             }
 

@@ -56,7 +56,7 @@ namespace Calendar.DAL
             if (rem == null) return false;
 
             rem.ReminderTime = reminder.ReminderTime;
-           
+
             try
             {
                 db.SubmitChanges();
@@ -78,6 +78,40 @@ namespace Calendar.DAL
             try
             {
                 db.Reminders.DeleteOnSubmit(rem);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool DeleteReminders(int appId)
+        {
+            var q = db.Reminders.Where(p => p.AppointmentId == appId);
+            List<Reminder> rems = q.ToList();
+            if (rems.Count == 0) return true;
+            try
+            {
+                db.Reminders.DeleteAllOnSubmit(rems);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool DeleteReminders(int appId, int userId)
+        {
+            var q = db.Reminders.Where(p => p.AppointmentId == appId && p.UserId == userId);
+            List<Reminder> rems = q.ToList();
+            if (rems.Count == 0) return true;
+            try
+            {
+                db.Reminders.DeleteAllOnSubmit(rems);
                 db.SubmitChanges();
             }
             catch (Exception e)
