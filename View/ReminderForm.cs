@@ -62,14 +62,9 @@ namespace Calendar.View
             listViewReminder.Items.Add(selectedReminder.ToString());
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (!ReminderBLL.createReminders(reminders)) return;
+            if (reminders.Count == 0 || !ReminderBLL.createReminders(reminders)) return;
             this.Close();
         }
     }

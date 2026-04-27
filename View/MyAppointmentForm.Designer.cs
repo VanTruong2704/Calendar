@@ -108,7 +108,7 @@
             this.Font = new System.Drawing.Font("Calibri", 14.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MyAppointmentForm";
-            this.Text = "MyAppointmentForm";
+            this.Text = "Cuộc hẹn của tôi";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

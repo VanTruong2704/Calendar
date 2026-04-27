@@ -33,7 +33,6 @@
             this.btnAddReminder = new System.Windows.Forms.Button();
             this.listViewReminder = new System.Windows.Forms.ListView();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelReminder
@@ -81,7 +80,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(77, 281);
+            this.btnConfirm.Location = new System.Drawing.Point(166, 285);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(139, 40);
@@ -90,17 +89,6 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(247, 281);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(137, 40);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Huỷ bỏ";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // ReminderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -108,14 +96,13 @@
             this.ClientSize = new System.Drawing.Size(484, 347);
             this.Controls.Add(this.listViewReminder);
             this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddReminder);
             this.Controls.Add(this.cbbReminder);
             this.Controls.Add(this.labelReminder);
             this.Font = new System.Drawing.Font("Calibri", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ReminderForm";
-            this.Text = "Reminder";
+            this.Text = "Thêm lời nhắc";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +115,5 @@
         private System.Windows.Forms.Button btnAddReminder;
         private System.Windows.Forms.ListView listViewReminder;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button btnCancel;
     }
 }

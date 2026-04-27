@@ -239,7 +239,7 @@
             this.Font = new System.Drawing.Font("Calibri", 14.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AppointmentDetailForm";
-            this.Text = "AppointmentDetailForm";
+            this.Text = "Chi tiết cuộc hẹn";
             ((System.ComponentModel.ISupportInitialize)(this.dgvParticipants)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
