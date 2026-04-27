@@ -47,8 +47,8 @@ namespace Calendar.BLL
                 Name = a.Name,
                 Location = a.Location,
                 Date = a.StartTime.Date.ToString("dd/MM/yyyy"),
-                StartHour = a.StartTime.ToString("hh:mm tt"),
-                EndHour = a.EndTime.ToString("hh:mm tt"),
+                StartHour = a.StartTime.ToString("HH:mm"),
+                EndHour = a.EndTime.ToString("HH:mm"),
                 Type = a.Type ? "Đơn" : "Nhóm"
             }).ToList();
         }
@@ -61,8 +61,8 @@ namespace Calendar.BLL
                 Name = a.Name,
                 Location = a.Location,
                 Date = a.StartTime.Date.ToString("dd/MM/yyyy"),
-                StartHour = a.StartTime.ToString("hh:mm tt"),
-                EndHour = a.EndTime.ToString("hh:mm tt"),
+                StartHour = a.StartTime.ToString("HH:mm"),
+                EndHour = a.EndTime.ToString("HH:mm"),
                 Type = a.Type ? "Đơn" : "Nhóm"
             };
         }
@@ -73,7 +73,7 @@ namespace Calendar.BLL
             return conflicts.Count > 0;
         }
 
-        public static int HasGroupMeeting(string name, DateTime start, DateTime end)
+        public static Appointment HasGroupMeeting(string name, DateTime start, DateTime end)
         {
             string duration = end.Subtract(start).TotalHours.ToString();
 
@@ -84,17 +84,15 @@ namespace Calendar.BLL
                     meeting.StartTime.ToShortDateString() == start.ToShortDateString() &&
                     meeting.EndTime.Subtract(meeting.StartTime).TotalHours.ToString() == duration)
                 {
-                    return meeting.Id;
+                    return meeting;
                 }
             }
 
-            return -1;
+            return null;
         }
 
-        public static bool DeleteConficts(CreateAppointment newApp)
+        public static bool DeleteConficts(DateTime start, DateTime end)
         {
-            DateTime start = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.StartHour, 0, 0);
-            DateTime end = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.EndHour, 0, 0);
             var conflicts = AppointmentDAL.GetConflictsInRange(UserBLL.CurrentUser.Id, start, end);
             foreach (var conflict in conflicts)
             {
@@ -118,6 +116,11 @@ namespace Calendar.BLL
                 Name = p.Name,
                 Email = p.Email
             }).ToList();
+        }
+
+        public static User GetParticipant(int meetingId, int userId)
+        {
+            return ParticipantDAL.GetParticipant(meetingId, userId);
         }
     }
 }

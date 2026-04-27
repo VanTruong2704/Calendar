@@ -132,12 +132,12 @@
             // labelParticipants
             // 
             this.labelParticipants.AutoSize = true;
-            this.labelParticipants.Location = new System.Drawing.Point(55, 308);
+            this.labelParticipants.Location = new System.Drawing.Point(55, 312);
             this.labelParticipants.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelParticipants.Name = "labelParticipants";
-            this.labelParticipants.Size = new System.Drawing.Size(266, 29);
+            this.labelParticipants.Size = new System.Drawing.Size(275, 29);
             this.labelParticipants.TabIndex = 0;
-            this.labelParticipants.Text = "Thông tin người tham gia:";
+            this.labelParticipants.Text = "Danh sách người tham gia:";
             // 
             // dgvParticipants
             // 

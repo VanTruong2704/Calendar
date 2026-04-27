@@ -44,3 +44,8 @@ select * from [User]
 select * from Appointment
 
 select * from Reminder
+
+select * from Participant
+
+select * from Appointment a join Participant p on a.Id = p.AppointmentId
+where p.UserId = 1

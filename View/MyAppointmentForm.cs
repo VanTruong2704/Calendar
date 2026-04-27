@@ -36,6 +36,11 @@ namespace Calendar.View
 
         private void btnViewDetail_Click(object sender, EventArgs e)
         {
+            if (dgvAppointment.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn cuộc hẹn để xem chi tiết.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             Form f = new AppointmentDetailForm((int) dgvAppointment.SelectedRows[0].Cells[0].Value);
             f.ShowDialog();
         }
@@ -47,13 +52,18 @@ namespace Calendar.View
 
         private void butDel_Click(object sender, EventArgs e)
         {
+            if (dgvAppointment.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn cuộc hẹn để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa cuộc hẹn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 int appId = (int)dgvAppointment.SelectedRows[0].Cells[0].Value;
                 if (AppointmentBLL.DeleteAppointment(appId))
                 {
-                    MessageBox.Show("Xóa cuộc hẹn thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Xóa cuộc hẹn thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Init();
                 }
                 else
