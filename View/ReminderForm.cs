@@ -64,7 +64,8 @@ namespace Calendar.View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (reminders.Count == 0 || !ReminderBLL.createReminders(reminders)) return;
+
+            if (reminders.Count > 0 && !ReminderBLL.createReminders(reminders)) return;
             this.Close();
         }
     }
