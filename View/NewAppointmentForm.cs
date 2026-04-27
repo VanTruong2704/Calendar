@@ -22,6 +22,7 @@ namespace Calendar
 
             this.selectedDate = selectedDate;
             rbSingle.Checked = true;
+            UiTheme.ApplyFormTheme(this);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace Calendar
             // Kiểm tra conficts
             if (AppointmentBLL.HasConflict(new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0)))
             {
-                DialogResult result = MessageBox.Show("Cuộc hẹn này có xung đột với cuộc hẹn khác. Bạn có muốn thay thế bằng cuộc hẹn này không?", "Xung đột cuộc hẹn", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Cuộc hẹn này có xung đột với cuộc hẹn khác. Bạn có muốn thay thế bằng cuộc hẹn này không?", "Xung đột cuộc hẹn", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.No)
                 {
                     return;
@@ -54,13 +55,13 @@ namespace Calendar
 
                 if (meetingId != -1)
                 {
-                    DialogResult result = MessageBox.Show("Cuộc hẹn nhóm này đã tồn tại. Bạn có muốn tham gia cuộc hẹn nhóm này không?", "Cuộc hẹn nhóm đã tồn tại", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Cuộc hẹn nhóm này đã tồn tại. Bạn có muốn tham gia cuộc hẹn nhóm này không?", "Cuộc hẹn nhóm đã tồn tại", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         int groupAppId = AppointmentBLL.JoinGroupMeeting(meetingId);
                         if (groupAppId == -1)
                         {
-                            MessageBox.Show("Bạn đã tham gia cuộc hẹn nhóm này!");
+                            MessageBox.Show("Bạn đã tham gia cuộc hẹn nhóm này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
 
@@ -76,7 +77,7 @@ namespace Calendar
 
             if (newAppId == -1)
             {
-                MessageBox.Show("Tạo cuộc hẹn thất bại! Vui lòng kiểm tra lại thông tin.");
+                MessageBox.Show("Tạo cuộc hẹn thất bại! Vui lòng kiểm tra lại thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }            
 

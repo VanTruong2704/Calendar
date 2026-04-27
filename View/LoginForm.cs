@@ -16,13 +16,14 @@ namespace Calendar.View
         public LoginForm()
         {
             InitializeComponent();
+            UiTheme.ApplyFormTheme(this);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (tbName.Text == "" || tbEmail.Text == "")
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -38,16 +39,16 @@ namespace Calendar.View
             else
             {
                 //nếu sai thì prompt hỏi có muốn đăng ký không
-                DialogResult result = MessageBox.Show("Tài khoản không tồn tại. Bạn có muốn đăng ký không?", "Đăng ký", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Tài khoản không tồn tại. Bạn có muốn đăng ký không?", "Đăng ký", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     if (UserBLL.register(tbName.Text, tbEmail.Text))
                     {
-                        MessageBox.Show("Đăng ký thành công");
+                        MessageBox.Show("Đăng ký thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Đăng ký thất bại");
+                        MessageBox.Show("Đăng ký thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

@@ -20,6 +20,7 @@ namespace Calendar.View
         {
             InitializeComponent();
             this.appointmentId = appointmentId;
+            UiTheme.ApplyFormTheme(this);
             Init();
         }
 
@@ -42,13 +43,13 @@ namespace Calendar.View
         {
             var selectedReminder = cbbReminder.SelectedItem as CBBItem;
             if (selectedReminder == null)             {
-                MessageBox.Show("Vui lòng chọn thời gian nhắc trước.");
+                MessageBox.Show("Vui lòng chọn thời gian nhắc trước.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (reminders.Any(r => r.RmdTimeId == selectedReminder.Key))
             {
-                MessageBox.Show("Bạn đã thêm nhắc trước này.");
+                MessageBox.Show("Bạn đã thêm nhắc trước này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

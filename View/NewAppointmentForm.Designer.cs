@@ -36,14 +36,12 @@
             this.labelType = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.rbSingle = new System.Windows.Forms.RadioButton();
-            this.rbGroup = new System.Windows.Forms.RadioButton();
             this.tbNameApp = new System.Windows.Forms.TextBox();
             this.tbLocation = new System.Windows.Forms.TextBox();
-            this.groupBoxType = new System.Windows.Forms.GroupBox();
             this.nudStartHour = new System.Windows.Forms.NumericUpDown();
             this.nudEndHour = new System.Windows.Forms.NumericUpDown();
-            this.groupBoxType.SuspendLayout();
+            this.rbSingle = new System.Windows.Forms.RadioButton();
+            this.rbGroup = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).BeginInit();
             this.SuspendLayout();
@@ -131,32 +129,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // rbSingle
-            // 
-            this.rbSingle.AutoSize = true;
-            this.rbSingle.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSingle.Location = new System.Drawing.Point(21, 21);
-            this.rbSingle.Margin = new System.Windows.Forms.Padding(2);
-            this.rbSingle.Name = "rbSingle";
-            this.rbSingle.Size = new System.Drawing.Size(72, 31);
-            this.rbSingle.TabIndex = 3;
-            this.rbSingle.TabStop = true;
-            this.rbSingle.Text = "Đơn";
-            this.rbSingle.UseVisualStyleBackColor = true;
-            // 
-            // rbGroup
-            // 
-            this.rbGroup.AutoSize = true;
-            this.rbGroup.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbGroup.Location = new System.Drawing.Point(179, 22);
-            this.rbGroup.Margin = new System.Windows.Forms.Padding(2);
-            this.rbGroup.Name = "rbGroup";
-            this.rbGroup.Size = new System.Drawing.Size(89, 31);
-            this.rbGroup.TabIndex = 4;
-            this.rbGroup.TabStop = true;
-            this.rbGroup.Text = "Nhóm";
-            this.rbGroup.UseVisualStyleBackColor = true;
-            // 
             // tbNameApp
             // 
             this.tbNameApp.Location = new System.Drawing.Point(251, 76);
@@ -172,18 +144,6 @@
             this.tbLocation.Name = "tbLocation";
             this.tbLocation.Size = new System.Drawing.Size(447, 36);
             this.tbLocation.TabIndex = 1;
-            // 
-            // groupBoxType
-            // 
-            this.groupBoxType.Controls.Add(this.rbGroup);
-            this.groupBoxType.Controls.Add(this.rbSingle);
-            this.groupBoxType.Location = new System.Drawing.Point(251, 224);
-            this.groupBoxType.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBoxType.Name = "groupBoxType";
-            this.groupBoxType.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxType.Size = new System.Drawing.Size(296, 58);
-            this.groupBoxType.TabIndex = 6;
-            this.groupBoxType.TabStop = false;
             // 
             // nudStartHour
             // 
@@ -209,14 +169,41 @@
             this.nudEndHour.Size = new System.Drawing.Size(120, 36);
             this.nudEndHour.TabIndex = 3;
             // 
+            // rbSingle
+            // 
+            this.rbSingle.AutoSize = true;
+            this.rbSingle.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbSingle.Location = new System.Drawing.Point(251, 244);
+            this.rbSingle.Margin = new System.Windows.Forms.Padding(2);
+            this.rbSingle.Name = "rbSingle";
+            this.rbSingle.Size = new System.Drawing.Size(72, 31);
+            this.rbSingle.TabIndex = 3;
+            this.rbSingle.TabStop = true;
+            this.rbSingle.Text = "Đơn";
+            this.rbSingle.UseVisualStyleBackColor = true;
+            // 
+            // rbGroup
+            // 
+            this.rbGroup.AutoSize = true;
+            this.rbGroup.Font = new System.Drawing.Font("Calibri", 12.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbGroup.Location = new System.Drawing.Point(420, 244);
+            this.rbGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.rbGroup.Name = "rbGroup";
+            this.rbGroup.Size = new System.Drawing.Size(89, 31);
+            this.rbGroup.TabIndex = 4;
+            this.rbGroup.TabStop = true;
+            this.rbGroup.Text = "Nhóm";
+            this.rbGroup.UseVisualStyleBackColor = true;
+            // 
             // NewAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(769, 359);
+            this.Controls.Add(this.rbSingle);
+            this.Controls.Add(this.rbGroup);
             this.Controls.Add(this.nudEndHour);
             this.Controls.Add(this.nudStartHour);
-            this.Controls.Add(this.groupBoxType);
             this.Controls.Add(this.tbLocation);
             this.Controls.Add(this.tbNameApp);
             this.Controls.Add(this.btnCancel);
@@ -231,8 +218,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NewAppointmentForm";
             this.Text = "AppointmentDetail";
-            this.groupBoxType.ResumeLayout(false);
-            this.groupBoxType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).EndInit();
             this.ResumeLayout(false);
@@ -250,12 +235,11 @@
         private System.Windows.Forms.Label labelType;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.RadioButton rbSingle;
-        private System.Windows.Forms.RadioButton rbGroup;
         private System.Windows.Forms.TextBox tbNameApp;
         private System.Windows.Forms.TextBox tbLocation;
-        private System.Windows.Forms.GroupBox groupBoxType;
         private System.Windows.Forms.NumericUpDown nudStartHour;
         private System.Windows.Forms.NumericUpDown nudEndHour;
+        private System.Windows.Forms.RadioButton rbSingle;
+        private System.Windows.Forms.RadioButton rbGroup;
     }
 }

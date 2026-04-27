@@ -17,6 +17,7 @@ namespace Calendar.View
         public MyAppointmentForm()
         {
             InitializeComponent();
+            UiTheme.ApplyFormTheme(this);
             Init();
         }
 
@@ -30,6 +31,7 @@ namespace Calendar.View
             dgvAppointment.Columns[4].HeaderText = "Giờ bắt đầu";
             dgvAppointment.Columns[5].HeaderText = "Giờ kết thúc";
             dgvAppointment.Columns[6].HeaderText = "Loại";
+            dgvAppointment.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void btnViewDetail_Click(object sender, EventArgs e)
@@ -45,18 +47,18 @@ namespace Calendar.View
 
         private void butDel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa cuộc hẹn này?", "Xác nhận", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa cuộc hẹn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 int appId = (int)dgvAppointment.SelectedRows[0].Cells[0].Value;
                 if (AppointmentBLL.DeleteAppointment(appId))
                 {
-                    MessageBox.Show("Xóa cuộc hẹn thành công.");
+                    MessageBox.Show("Xóa cuộc hẹn thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Init();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa cuộc hẹn thất bại.");
+                    MessageBox.Show("Xóa cuộc hẹn thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

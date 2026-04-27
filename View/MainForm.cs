@@ -15,6 +15,7 @@ namespace Calendar.View
         public MainForm()
         {
             InitializeComponent();
+            UiTheme.ApplyFormTheme(this);
         }
 
         private void btnAddAppointment_Click(object sender, EventArgs e)

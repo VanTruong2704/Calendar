@@ -102,6 +102,7 @@
     <Compile Include="View\ReminderForm.Designer.cs">
       <DependentUpon>ReminderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UiTheme.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
