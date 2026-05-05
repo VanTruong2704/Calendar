@@ -56,7 +56,7 @@ namespace Calendar
 
             if (newApp.Type == false)
             {
-                Appointment meeting = AppointmentBLL.HasGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0));
+                Appointment meeting = AppointmentBLL.GetGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0));
 
                 if (meeting != null)
                 {

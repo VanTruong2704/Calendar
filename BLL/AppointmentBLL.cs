@@ -73,7 +73,7 @@ namespace Calendar.BLL
             return conflicts.Count > 0;
         }
 
-        public static Appointment HasGroupMeeting(string name, DateTime start, DateTime end)
+        public static Appointment GetGroupMeeting(string name, DateTime start, DateTime end)
         {
             string duration = end.Subtract(start).TotalHours.ToString();
 

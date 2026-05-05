@@ -27,14 +27,17 @@ namespace Calendar.View
                 return;
             }
 
-            if (UserBLL.login(tbName.Text, tbEmail.Text))
+            if (UserBLL.login(tbName.Text.Trim(), tbEmail.Text.Trim()))
             {
                 this.Hide();
 
                 MainForm mainForm = new MainForm();
                 mainForm.ShowDialog();
-                
-                this.Close();
+
+                tbName.Text = "";
+                tbEmail.Text = "";
+
+                this.Show();
             }
             else
             {
