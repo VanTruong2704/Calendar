@@ -44,6 +44,12 @@ namespace Calendar
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            if (tbNameApp.Text == "" || tbLocation.Text == "" || nudStartHour.Value >= nudEndHour.Value)
+            {
+                MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thông tin không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             CreateAppointment newApp = new CreateAppointment
             {
                 Name = tbNameApp.Text,
@@ -79,6 +85,7 @@ namespace Calendar
                         ReminderForm fo = new ReminderForm(meeting.Id);
                         fo.ShowDialog();
                         this.Close();
+                        MessageBox.Show("Tham gia cuộc hẹn nhóm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
                 }
