@@ -51,6 +51,7 @@
     <Compile Include="BLL\ReminderBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
+    <Compile Include="DAL\DataContextFactory.cs" />
     <Compile Include="DAL\ParticipantDAL.cs" />
     <Compile Include="DAL\ReminderDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />

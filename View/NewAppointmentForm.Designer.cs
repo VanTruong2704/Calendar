@@ -42,8 +42,12 @@
             this.nudEndHour = new System.Windows.Forms.NumericUpDown();
             this.rbSingle = new System.Windows.Forms.RadioButton();
             this.rbGroup = new System.Windows.Forms.RadioButton();
+            this.nudStartMinute = new System.Windows.Forms.NumericUpDown();
+            this.nudEndMinute = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartMinute)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEndMinute)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAppointmentDetail
@@ -154,19 +158,19 @@
             0,
             0});
             this.nudStartHour.Name = "nudStartHour";
-            this.nudStartHour.Size = new System.Drawing.Size(120, 36);
+            this.nudStartHour.Size = new System.Drawing.Size(51, 36);
             this.nudStartHour.TabIndex = 2;
             // 
             // nudEndHour
             // 
-            this.nudEndHour.Location = new System.Drawing.Point(578, 196);
+            this.nudEndHour.Location = new System.Drawing.Point(575, 193);
             this.nudEndHour.Maximum = new decimal(new int[] {
             23,
             0,
             0,
             0});
             this.nudEndHour.Name = "nudEndHour";
-            this.nudEndHour.Size = new System.Drawing.Size(120, 36);
+            this.nudEndHour.Size = new System.Drawing.Size(48, 36);
             this.nudEndHour.TabIndex = 3;
             // 
             // rbSingle
@@ -195,6 +199,30 @@
             this.rbGroup.Text = "Nhóm";
             this.rbGroup.UseVisualStyleBackColor = true;
             // 
+            // nudStartMinute
+            // 
+            this.nudStartMinute.Location = new System.Drawing.Point(308, 192);
+            this.nudStartMinute.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.nudStartMinute.Name = "nudStartMinute";
+            this.nudStartMinute.Size = new System.Drawing.Size(51, 36);
+            this.nudStartMinute.TabIndex = 2;
+            // 
+            // nudEndMinute
+            // 
+            this.nudEndMinute.Location = new System.Drawing.Point(632, 192);
+            this.nudEndMinute.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.nudEndMinute.Name = "nudEndMinute";
+            this.nudEndMinute.Size = new System.Drawing.Size(48, 36);
+            this.nudEndMinute.TabIndex = 3;
+            // 
             // NewAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -202,7 +230,9 @@
             this.ClientSize = new System.Drawing.Size(769, 359);
             this.Controls.Add(this.rbSingle);
             this.Controls.Add(this.rbGroup);
+            this.Controls.Add(this.nudEndMinute);
             this.Controls.Add(this.nudEndHour);
+            this.Controls.Add(this.nudStartMinute);
             this.Controls.Add(this.nudStartHour);
             this.Controls.Add(this.tbLocation);
             this.Controls.Add(this.tbNameApp);
@@ -221,6 +251,8 @@
             this.Text = "Thêm cuộc hẹn";
             ((System.ComponentModel.ISupportInitialize)(this.nudStartHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEndHour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartMinute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEndMinute)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +274,7 @@
         private System.Windows.Forms.NumericUpDown nudEndHour;
         private System.Windows.Forms.RadioButton rbSingle;
         private System.Windows.Forms.RadioButton rbGroup;
+        private System.Windows.Forms.NumericUpDown nudStartMinute;
+        private System.Windows.Forms.NumericUpDown nudEndMinute;
     }
 }

@@ -44,7 +44,10 @@ namespace Calendar
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (tbNameApp.Text == "" || tbLocation.Text == "" || nudStartHour.Value >= nudEndHour.Value)
+            DateTime start = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, (int)nudStartHour.Value, (int)nudStartMinute.Value, 0);
+            DateTime end = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, (int)nudEndHour.Value, (int)nudEndMinute.Value, 0);
+
+            if (tbNameApp.Text == "" || tbLocation.Text == "" || start >= end)
             {
                 MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thông tin không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -57,12 +60,14 @@ namespace Calendar
                 Date = selectedDate,
                 StartHour = (int)nudStartHour.Value,
                 EndHour = (int)nudEndHour.Value,
+                StartMinute = (int)nudStartMinute.Value,
+                EndMinute = (int)nudEndMinute.Value,
                 Type = rbSingle.Checked ? true : false
             };
 
             if (newApp.Type == false)
             {
-                Appointment meeting = AppointmentBLL.GetGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0));
+                Appointment meeting = AppointmentBLL.GetGroupMeeting(newApp.Name, new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, newApp.StartMinute, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, newApp.EndMinute, 0));
 
                 if (meeting != null)
                 {
@@ -92,7 +97,7 @@ namespace Calendar
             }
 
             // Kiểm tra conficts
-            if (!promptConflict(new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.StartHour, 0, 0), new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, newApp.EndHour, 0, 0)))
+            if (!promptConflict(start, end))
             {
                 return;
             }

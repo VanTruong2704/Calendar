@@ -15,8 +15,10 @@ namespace Calendar.BLL
         public static int createAppointment(CreateAppointment newApp)
         {
             // Kiểm tra thông tin hợp lệ
-            if (string.IsNullOrEmpty(newApp.Name) || string.IsNullOrEmpty(newApp.Location) ||
-                newApp.StartHour >= newApp.EndHour)
+            DateTime start = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.StartHour, newApp.StartMinute, 0);
+            DateTime end = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.EndHour, newApp.EndMinute, 0);
+
+            if (string.IsNullOrEmpty(newApp.Name) || string.IsNullOrEmpty(newApp.Location) || start >= end)
             {
                 return -1;
             }
@@ -25,8 +27,8 @@ namespace Calendar.BLL
             {
                 Name = newApp.Name,
                 Location = newApp.Location,
-                StartTime = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.StartHour, 0, 0),
-                EndTime = new DateTime(newApp.Date.Year, newApp.Date.Month, newApp.Date.Day, newApp.EndHour, 0, 0),
+                StartTime = start,
+                EndTime = end,
                 Type = newApp.Type
             };
 
@@ -75,14 +77,14 @@ namespace Calendar.BLL
 
         public static Appointment GetGroupMeeting(string name, DateTime start, DateTime end)
         {
-            string duration = end.Subtract(start).TotalHours.ToString();
+            string duration = end.Subtract(start).TotalMinutes.ToString();
 
             var groupMeetings = AppointmentDAL.GetGroupMeetings();
             foreach (var meeting in groupMeetings)
             {
                 if (meeting.Name == name && 
                     meeting.StartTime.ToShortDateString() == start.ToShortDateString() &&
-                    meeting.EndTime.Subtract(meeting.StartTime).TotalHours.ToString() == duration)
+                    meeting.EndTime.Subtract(meeting.StartTime).TotalMinutes.ToString() == duration)
                 {
                     return meeting;
                 }

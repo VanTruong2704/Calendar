@@ -9,134 +9,155 @@ namespace Calendar.DAL
 {
     public class AppointmentDAL
     {
-        private static DataClasses1DataContext db = new DataClasses1DataContext();
 
         public static List<Appointment> GetConflictsInRange(int userId, DateTime start, DateTime end)
         {
-            var q = from p in db.Appointments
-                    join u in db.Participants on p.Id equals u.AppointmentId
-                    where u.UserId == userId && ((p.StartTime >= start && p.StartTime < end) || (p.EndTime > start && p.EndTime <= end) || (p.StartTime <= start && p.EndTime >= end))
-                    select p;
-            return q.ToList();
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = from p in db.Appointments
+                        join u in db.Participants on p.Id equals u.AppointmentId
+                        where u.UserId == userId && ((p.StartTime >= start && p.StartTime < end) || (p.EndTime > start && p.EndTime <= end) || (p.StartTime <= start && p.EndTime >= end))
+                        select p;
+                return q.ToList();
+            }
         }
 
         public static List<Appointment> GetGroupMeetings()
         {
-            var q = db.Appointments.Where(p => p.Type == false);
-            return q.ToList();
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = db.Appointments.Where(p => p.Type == false);
+                return q.ToList();
+            }
         }
 
         public static List<Appointment> GetAppointments(int userId)
         {
-            var q = from p in db.Appointments
-                    join u in db.Participants on p.Id equals u.AppointmentId
-                    where u.UserId == userId 
-                    select p;
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = from p in db.Appointments
+                        join u in db.Participants on p.Id equals u.AppointmentId
+                        where u.UserId == userId 
+                        select p;
 
-            return q.ToList();
+                return q.ToList();
+            }
         }
 
         public static Appointment GetAppointment(int appId)
         {
-            var q = db.Appointments.Where(p => p.Id == appId);
-
-            return q.FirstOrDefault();
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = db.Appointments.Where(p => p.Id == appId);
+                return q.FirstOrDefault();
+            }
         }
 
         public static int AddAppointment(Appointment appointment)
         {
-            try
+            using (var db = DataContextFactory.CreateContext())
             {
-                db.Appointments.InsertOnSubmit(appointment);
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-            finally
-            {
-                db.SubmitChanges();
-                ParticipantDAL.AddParticipant(new Participant { AppointmentId = appointment.Id, UserId = UserBLL.CurrentUser.Id });
-            }
+                try
+                {
+                    db.Appointments.InsertOnSubmit(appointment);
+                    db.SubmitChanges();
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
 
-            return appointment.Id;
+                ParticipantDAL.AddParticipant(new Participant { AppointmentId = appointment.Id, UserId = UserBLL.CurrentUser.Id });
+                return appointment.Id;
+            }
         }
 
         public static bool UpdateAppointment(Appointment appointment)
         {
-            var q = db.Appointments.Where(p => p.Id == appointment.Id);
-            Appointment app = q.FirstOrDefault();
-
-            if (app == null) return false;
-
-            app.Name = appointment.Name;
-            app.Location = appointment.Location;
-            app.StartTime = appointment.StartTime;
-            app.EndTime = appointment.EndTime;
-            app.Type = appointment.Type;
-
-            try
+            using (var db = DataContextFactory.CreateContext())
             {
-                db.SubmitChanges();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+                var q = db.Appointments.Where(p => p.Id == appointment.Id);
+                Appointment app = q.FirstOrDefault();
 
-            return true;
+                if (app == null) return false;
+
+                app.Name = appointment.Name;
+                app.Location = appointment.Location;
+                app.StartTime = appointment.StartTime;
+                app.EndTime = appointment.EndTime;
+                app.Type = appointment.Type;
+
+                try
+                {
+                    db.SubmitChanges();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
 
         public static bool DeleteAppointment(int appId)
         {
             //leave group meetings, only delete personal appointments
 
-            var q = db.Appointments.Where(p => p.Id == appId);
-            Appointment app = q.FirstOrDefault();
-
-            if (app == null) return false;
-
-            try
+            using (var db = DataContextFactory.CreateContext())
             {
-                if (app.Type == true) { 
-                    ReminderDAL.DeleteReminders(appId);
-                    ParticipantDAL.DeleteParticipant(appId, UserBLL.CurrentUser.Id);
-                    db.Appointments.DeleteOnSubmit(app);
-                    db.SubmitChanges();
-                } else
+                var q = db.Appointments.Where(p => p.Id == appId);
+                Appointment app = q.FirstOrDefault();
+
+                if (app == null) return false;
+
+                try
                 {
                     ReminderDAL.DeleteReminders(appId, UserBLL.CurrentUser.Id);
                     ParticipantDAL.DeleteParticipant(appId, UserBLL.CurrentUser.Id);
-                    if (app.Participants.Count == 0)
+
+                    // Query mới bằng DataContext khác để lấy count chính xác (tránh cache stale)
+                    int remainingCount = db.Participants.Count(p => p.AppointmentId == appId);
+                    Console.WriteLine("Current user count left: " + remainingCount);
+
+                    if (remainingCount == 0)
                     {
-                        db.Appointments.DeleteOnSubmit(app);
-                        db.SubmitChanges();
+                        // Reload appointment từ db hiện tại để đảm bảo không cache stale
+                        app = db.Appointments.Where(p => p.Id == appId).FirstOrDefault();
+                        if (app != null)
+                        {
+                            db.Appointments.DeleteOnSubmit(app);
+                            db.SubmitChanges();
+                        }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+                catch (Exception)
+                {
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
         }
 
         public static int JoinGroupMeeting(int appId, int userId)
         {
-            var q = db.Appointments.Where(p => p.Id == appId);
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = db.Appointments.Where(p => p.Id == appId);
 
-            Appointment app = q.FirstOrDefault();
+                Appointment app = q.FirstOrDefault();
 
-            if (app == null || app.Type == true) return -1;
+                if (app == null || app.Type == true) return -1;
 
-            var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
-            if (user == null) return -1;
+                var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
+                if (user == null) return -1;
 
-            if (!ParticipantDAL.AddParticipant(new Participant { AppointmentId = appId, UserId = userId }))
-                return -1;
-            
-            return app.Id;
+                if (!ParticipantDAL.AddParticipant(new Participant { AppointmentId = appId, UserId = userId }))
+                    return -1;
+
+                return app.Id;
+            }
         }
     }
 }

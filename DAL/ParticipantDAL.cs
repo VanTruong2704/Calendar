@@ -8,55 +8,66 @@ namespace Calendar.DAL
 {
     public class ParticipantDAL
     {
-        private static DataClasses1DataContext db = new DataClasses1DataContext();
         public static List<User> GetParticipants(int appId)
         {
-            var q = db.Participants.Where(p => p.AppointmentId == appId).Select(p => p.User);
-            return q.ToList();
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = db.Participants.Where(p => p.AppointmentId == appId).Select(p => p.User);
+                return q.ToList();
+            }
         }
-        
+
         public static User GetParticipant(int appId, int userId)
         {
-            var q = db.Participants.Where(p => p.AppointmentId == appId && p.UserId == userId).Select(p => p.User);
-            return q.FirstOrDefault();
+            using (var db = DataContextFactory.CreateContext())
+            {
+                var q = db.Participants.Where(p => p.AppointmentId == appId && p.UserId == userId).Select(p => p.User);
+                return q.FirstOrDefault();
+            }
         }
 
         public static bool AddParticipant(Participant participant)
         {
-            try
+            using (var db = DataContextFactory.CreateContext())
             {
-                db.Participants.InsertOnSubmit(participant);
+                try
+                {
+                    db.Participants.InsertOnSubmit(participant);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                finally
+                {
+                    db.SubmitChanges();
+                }
+                return true;
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                db.SubmitChanges();
-            }
-            return true;
         }
 
         public static bool DeleteParticipant(int appId, int userId)
         {
-            try
+            using (var db = DataContextFactory.CreateContext())
             {
-                var q = db.Participants.Where(p => p.AppointmentId == appId && p.UserId == userId).FirstOrDefault();
-                if (q != null)
+                try
                 {
-                    db.Participants.DeleteOnSubmit(q);
+                    var q = db.Participants.Where(p => p.AppointmentId == appId && p.UserId == userId).FirstOrDefault();
+                    if (q != null)
+                    {
+                        db.Participants.DeleteOnSubmit(q);
+                    }
                 }
+                catch (Exception)
+                {
+                    return false;
+                }
+                finally
+                {
+                    db.SubmitChanges();
+                }
+                return true;
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                db.SubmitChanges();
-            }
-            return true;
         }
     }
 }
