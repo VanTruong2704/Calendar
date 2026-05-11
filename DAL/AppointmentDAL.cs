@@ -103,7 +103,6 @@ namespace Calendar.DAL
         public static bool DeleteAppointment(int appId)
         {
             //leave group meetings, only delete personal appointments
-
             using (var db = DataContextFactory.CreateContext())
             {
                 var q = db.Appointments.Where(p => p.Id == appId);
@@ -116,13 +115,10 @@ namespace Calendar.DAL
                     ReminderDAL.DeleteReminders(appId, UserBLL.CurrentUser.Id);
                     ParticipantDAL.DeleteParticipant(appId, UserBLL.CurrentUser.Id);
 
-                    // Query mới bằng DataContext khác để lấy count chính xác (tránh cache stale)
                     int remainingCount = db.Participants.Count(p => p.AppointmentId == appId);
-                    Console.WriteLine("Current user count left: " + remainingCount);
 
                     if (remainingCount == 0)
                     {
-                        // Reload appointment từ db hiện tại để đảm bảo không cache stale
                         app = db.Appointments.Where(p => p.Id == appId).FirstOrDefault();
                         if (app != null)
                         {
